@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS Test;
+CREATE DATABASE IF NOT EXISTS test_db;
 
-Use Test;
+Use test_db;
 
 CREATE TABLE IF NOT EXISTS `Currencies`(
   currency varchar(31) NOT NULL Primary key,

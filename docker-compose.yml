@@ -1,0 +1,28 @@
+version: '3.3'
+
+services: 
+    backend:
+        build: ./backend
+        environment:
+            MYSQL_HOST: mysql_server
+            MYSQL_DATABASE: test_db
+            MYSQL_USER: mysql
+            MYSQL_PASSWORD: pass1234
+        ports:
+            - 3000:3000
+        depends_on:
+            - mysql_server
+        restart: 'no' #on-failure
+        # tty: true
+    mysql_server:
+        image: mysql:8.0
+        volumes:
+            - "./init/:/docker-entrypoint-initdb.d/"
+            - dbdata:/var/lib/mysql
+        environment:
+            - MYSQL_DATABASE=test_db
+            - MYSQL_USER=mysql
+            - MYSQL_PASSWORD=pass
+            - MYSQL_ROOT_PASSWORD=pass1234
+volumes:
+        dbdata:
